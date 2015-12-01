@@ -1,0 +1,149 @@
+﻿html,
+body{
+	height: 100%;
+	background-color: #ddd;
+	margin: 0;
+	font-family: 'Comic Sans MS', Arial;
+}
+hr{
+	width: 99%;
+	margin-bottom: 0;
+	bottom: 0;
+}
+div.wrapper{
+	width: 100%;
+	min-height: 100%;
+	position: relative;
+	/*background-color: pink;*/
+}
+div.logo{
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	/*float: left;*/
+	margin: 0;
+	padding-top: 10px;
+}
+div.content{
+	width: 100%;
+	padding-bottom: 40px;
+	text-align: center;
+	/*background-color: yellow;*/
+	/*position: absolute;*/
+}
+div.footer{
+	font-size: 10px;
+	font-family: Arial;
+	text-align: center;
+	width: 100%;
+	height: 40px;
+	/*background-color: red;*/
+	position: absolute;
+	bottom: 0px;
+}
+div.loginForm{
+	margin-right: 10px;
+	text-align: right;
+	float: right;
+	width: 250px;
+	/*display: block;*/
+}
+div.regForm{
+	width: 350px;
+	text-align: left;
+	margin: auto;
+}
+div.regFormNameItem{
+	width: 120px;
+	height: 25px;	
+	display: inline-block;
+	text-align: right;
+	float: left;
+}
+div.regFormInput{
+	width: 230px;
+	height: 25px;
+	display: inline-block;
+	text-align: right;
+}
+div.ratingTable{
+	width: 500px;
+	margin: auto;
+	border: 3px double;
+	padding: 2px;
+}
+div.ratingPlace{
+	width: 40px;
+	height: 25px;
+	text-align: center;
+	margin-left:10px;
+	border-bottom: 1px solid;
+	display: inline-block;
+	float:left;
+}
+div.ratingName{
+	width: 316px;
+	height: 25px;
+	border-left: 2px groove;
+	border-right: 2px groove;
+	padding-left: 10px;
+	text-align: left;
+	border-bottom: 1px solid;
+	display: inline-block;
+	float: left;
+}
+div.ratingScore{
+	width: 100px;
+	height: 25px;
+	padding-left: 10px;
+	text-align: left;
+	margin-right:10px;
+	border-bottom: 1px solid;
+	display: inline-block;
+}
+#btnLogin{
+	background: url("/content/images/arrow.png") no-repeat;
+	background-size:40px 18px; 
+	background-color: #9DB0B0;
+	width: 50px; 
+	height:23px; 
+	margin-top: 2px; 
+	border-radius: 5px;
+	border: 2px outset silver;
+	outline: none;
+	cursor: pointer;
+}
+#btnLogin:active{
+	border: 2px inset silver;
+}
+
+ul{
+	display: inline;
+}
+li{
+	border: 2px outset silver;
+	margin-right: 30px;
+	display: inline;
+	padding: 2px;
+	border-radius: 10px;
+	background-color: #9DB0B0;
+}
+li:hover{
+	border: 2px inset silver;
+	margin-right: 30px;
+	display: inline;
+	padding: 2px;
+	border-radius: 10px;
+	background-color: #D8DFDF;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+
+input[type="textarea"], input[type="password"], #userName, #email, #pass, #confPass{
+	height: 18px;
+	padding: 0;
+	font-family: Arial;
+	width: 220px;
+}

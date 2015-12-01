@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section scripts
+    {
+        <script src="~/Scripts/pages/hideBlock.js"></script>
+    }
+
+<div class="content">
+    <ul>
+        <li>
+            @Html.ActionLink("Go to Battle", "Field", "BattleField")
+        </li>
+        <li>
+            @Html.ActionLink("Player Ratin", "PlayerRating", "Home")
+
+        </li>
+        <li>
+            @Html.ActionLink("Sing Up", "Registration", "Home")
+        </li>
+        <li>
+            <a href="" onclick="hideBlock('lForm');return (false)">Sing In</a>
+        </li>
+    </ul>
+    <form method="post">
+        <div class="loginForm" style="height: 100px; display: none;" id="lForm">
+            <div class="loginForm">
+                <input type="textarea" placeholder="username" name="userName" />
+            </div>
+            <div class="loginForm">
+                <input type="password" placeholder="password" name="pass" />
+            </div>
+            <div class="loginForm">
+                <input type="submit" id="btnLogin" title="Login" value="" />
+            </div>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,155 @@
+﻿
+@{
+    int fieldSize = ViewBag.FieldSize;
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/libs/jquery/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/pages/MoveShips.js"></script>
+    <link href="@Url.Content("/css/BattleField.css")" rel="stylesheet" type="text/css" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="fields">
+        <br /> <br />
+        <table style="font-family:'Comic Sans MS', Arial; margin:auto; font-size: 13px;">
+            @for (int i = 0; i < fieldSize + 1; ++i)
+            {
+                <tr class="">
+                    @for (int j = 0; j < fieldSize + 1; ++j)
+                    {
+                        if (j == 1 && i == 1)
+                        {
+                            <th class="" colspan="10" rowspan="10">
+                                <table class="battle_field">
+                                    @for (int k = 0; k < fieldSize; ++k)
+                                    {
+                                        <tr class="battle_field">
+                                            @for (int L = 0; L < fieldSize; ++L)
+                                            {
+                                                <th class="battle_field">
+                                                    <button class="cell" />
+                                                </th>
+                                            }
+                                        </tr>
+                                    }
+                                </table>
+                            </th>
+                            j = fieldSize;
+                        }
+                        else if (i == 0 && j > 0)
+                        {
+                            <th class="">@Convert.ToChar(@j + 64)</th>
+                        }
+                        else if (j == 0 && i != 0)
+                        {
+                            <th class="">@i</th>
+                        }
+                        else if (j == 0 && i == 0)
+                        {
+                            <th class=""></th>
+                        }
+                    }
+                </tr>
+            }
+        </table>
+
+    </div>
+    <div class="timer">Turn</div>
+    <div class="fields">
+        <br /> <br />
+        <table class="" style="font-family:'Comic Sans MS',Arial; margin:auto; font-size: 13px;">
+            @for (int i = 0; i < fieldSize + 1; ++i)
+            {
+                <tr class="">
+                    @for (int j = 0; j < fieldSize + 1; ++j)
+                    {
+                        if (j == 1 && i == 1)
+                        {
+                            <th class="" colspan="10" rowspan="10">
+                                <table class="battle_field">
+                                    @for (int k = 0; k < fieldSize; ++k)
+                                    {
+                                        <tr class="battle_field">
+                                            @for (int L = 0; L < fieldSize; ++L)
+                                            {
+                                                <th class="battle_field" id="@(k.ToString() + L)">
+                                                </th>
+                                            }
+                                        </tr>
+                                    }
+                                </table>
+                            </th>
+                            j = fieldSize;
+                        }
+                        else if (i == 0 && j > 0)
+                        {
+                            <th class="">@Convert.ToChar(@j + 64)</th>
+                        }
+                        else if (j == 0 && i != 0)
+                        {
+                            <th class="">@i</th>
+                        }
+                        else if (j == 0 && i == 0)
+                        {
+                            <th></th>
+                        }
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="clear"></div>
+    @{
+        int shipSize = 4, shipId = 0, shipCount = 1, maxShips = 10;
+
+        while(maxShips != 0)
+        {
+            for (int i = 0; i < shipCount; i++)
+            {
+                --maxShips;
+                <div class="ship" id="@shipId">
+                     @for (int j = 0; j < shipSize; j++)
+                     {
+                         <div class="shipCell"></div>
+                     }                   
+                </div>
+                <div class="space"></div>
+                ++shipId;
+            }
+            ++shipCount;
+            --shipSize;
+            <div class="clear"></div>
+            }
+        }
+    <!--
+    <div class="clear"></div>
+    <div class="ship" id="4">
+        <div class="shipCell"></div>
+        <div class="shipCell"></div>
+        <div class="shipCell"></div>
+        <div class="shipCell"></div>
+    </div>
+    <div class="clear"></div>
+    <div class="ship" id="3">
+        <div class="shipCell"></div>
+        <div class="shipCell"></div>
+        <div class="shipCell"></div>
+    </div>
+    <div class="clear"></div>
+    <div class="ship" id="2">
+        <div class="shipCell"></div>
+        <div class="shipCell"></div>
+    </div>
+    <div class="clear"></div>
+    <div class="ship" id="1">
+        <div class="shipCell"></div>
+    </div>
+        -->
+</body>
+</html>

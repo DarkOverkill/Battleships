@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Battle Ships</title>
+    <link href="~/css/myStyles.css" rel="stylesheet" />
+    <script src="~/Scripts/libs/jquery/jquery-2.1.4.js"></script>
+    @RenderSection("scripts", false)
+</head>
+<body>
+    <div class="wrapper">
+        <div class="logo">
+            <h1>Battle Ships</h1>
+            <hr />
+        </div>
+
+            @RenderBody() 
+
+        <div class="footer">
+            <hr />
+            Design by Fedas Maksym. 2015<br />
+            E-mail: maxym.fedas@gmail.com
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿body {
+    background-color: #ddd;
+}
+table.battle_field{
+    border: 2px  solid black;
+    padding: 0px;
+    margin: 0;
+    border-spacing:0px 0px;
+    margin: auto auto;
+    background-color:red;
+    
+}
+tr.battle_field{
+    border:none;
+    padding: 0px;
+    margin: 0;
+    border-spacing:0px 0px;
+}
+th.battle_field{
+    border-right:1px solid;
+    border-bottom:1px solid;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    margin: 0px;
+    border-spacing: 0px;
+    float:left;
+    background-color: aqua;
+}
+button.cell{
+    border: outset #DFDFDF;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    margin: 0;
+
+}
+button.cell:active{
+    border:inset #DFDFDF;
+    outline: none;
+    padding: 
+}
+div.fields {
+    float: left;
+    width: 42%;
+}
+div.timer{
+    float: left;
+    width: 16%;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Comic Sans MS', Arial;
+}
+div.logo{
+    text-align:center;
+    font-size: 40px;
+    font-family: Arial;
+    height: 80px;
+}
+
+table.cover{
+    text-align: center;
+    font-family: 'Comic Sans MS', Arial;
+}
+th.cover{
+}
+tr.cover {
+}
+div.shipCell{
+    width: 29px;
+    height: 29px;
+    border: 1px solid black;
+    background-color: indigo;
+    float: left;
+}
+div.clear{
+    clear:both;
+    padding: 10px;
+}
+div.ship{
+    float:left;
+}
+div.space{
+    float: left;
+    padding: 10px;
+}

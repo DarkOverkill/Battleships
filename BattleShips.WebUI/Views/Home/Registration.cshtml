@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="content">
+    <div class="regForm">
+        <form method="post">
+            <div class="regFormNameItem">
+                User name:
+            </div>
+            <div class="regFormInput">
+                <input type="textarea" name="userName" />
+            </div>
+            <div class="regFormNameItem">
+                E-mail:
+            </div>
+            <div class="regFormInput">
+                <input type="textarea" name="email" />
+            </div>
+            <div class="regFormNameItem">
+                Password:
+            </div>
+            <div class="regFormInput">
+                <input type="password" name="pass" />
+            </div>
+            <div class="regFormNameItem">
+                Confirm pass:
+            </div>
+            <div class="regFormInput">
+                <input type="password" name="confPass" />
+            </div>
+            <div class="regFormInput" style="margin:0; padding: 0">
+                <input type="submit" value="Registrate" style="margin:0px; outline: none" />
+            </div>
+        </form>
+    </div>
+</div>
