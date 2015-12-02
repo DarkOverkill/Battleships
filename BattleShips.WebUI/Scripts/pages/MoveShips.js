@@ -1,28 +1,32 @@
-﻿var shipsArray = [];
+﻿var shipsArray = []; // array for storage ships wich was select
 var onShipClick = function () {   
     console.log(this);
     var ship = $(this);
-    var hasInArray = false;
-    for (var i = 0; i < shipsArray.length; ++i) {
-        if (shipsArray[i].attr('id') === ship.attr('id')) {
-            hasInArray = true;
-            console.log('Error');
-            break;
-        }
-    }
-    console.log(shipsArray[0]);
-    if (!hasInArray) {
-        shipsArray.push(ship);
-    }
     ship.rotate = 0;//ship[0].style.transform;
     ship[0].style.transform = 'rotate(' + ship.rotate + 'deg)';
     ship._width = ship.width();
     ship._height = ship.height();
-    //console.log(ship.rotate);
+    ship.cellCount = ship.children().length;
+    ship.cellsPosition = ['00']; // start position, cords of first cell of field
+    SetCellsPosition(ship);
+    var hasInArray = false;
+    for (var i = 0; i < shipsArray.length; ++i) {
+        if (shipsArray[i].attr('id') === ship.attr('id')) {
+            hasInArray = true;
+            //console.log('Error');
+            break;
+        }
+    }
+    //console.log(shipsArray[0]);
+    if (!hasInArray) {
+        shipsArray.push(ship);
+    }
+    
+    
     var srcCord = {
         top: ship.offset().top,
         left: ship.offset().left
-    }
+    } // cord of the source destenation
 
     console.log(srcCord.top + ' ' + srcCord.left);
     ship.offset({
@@ -52,6 +56,7 @@ var onShipClick = function () {
                     ship.offset({
                         left: (ship.offset().left - 31)
                     });
+                    ship.cellsPosition[0] = ship.cellsPosition[0][0] + (parseInt(ship.cellsPosition[0][1]) - 1);
                 }
                 break;
             case right:
@@ -59,6 +64,7 @@ var onShipClick = function () {
                     ship.offset({
                         left: (ship.offset().left + 31)
                     });
+                    ship.cellsPosition[0] = ship.cellsPosition[0][0] + (parseInt(ship.cellsPosition[0][1]) + 1);
                 }
                 break;
             case up:
@@ -66,6 +72,7 @@ var onShipClick = function () {
                     ship.offset({
                         top: (ship.offset().top - 31)
                     });
+                    ship.cellsPosition[0] = (parseInt(ship.cellsPosition[0][0]) - 1) + ship.cellsPosition[0][1];
                 }
                 break;
             case down:
@@ -73,6 +80,7 @@ var onShipClick = function () {
                     ship.offset({
                         top: (ship.offset().top + 31)
                     });
+                    ship.cellsPosition[0] = (parseInt(ship.cellsPosition[0][0]) + 1) + ship.cellsPosition[0][1];
                 }
                 break;
             case exit:
@@ -83,33 +91,29 @@ var onShipClick = function () {
                 onkeydown = null;
                 break;
             case rotation:
-                rotate(ship);
+                rotate(ship);               
                 break;
             case enter:
-                console.log(shipsArray.length);
-                for (var i = 0; i < shipsArray.length; ++i) {
-                    console.log(shipsArray[i].attr('id'));
+                //console.log(shipsArray.length);
+                for (var i = 0; i < ship.cellsPosition.length; ++i) {
+                    console.log(ship.cellsPosition[i]);
                 }
                 break;
             default:
                 console.log(e.keyCode);
                 break;
         }
+        SetCellsPosition(ship);
     }
 }
-function BorderCheck(elem)
-{
-    var left = $('#00').parent().parent().offset().left;
-    var top = $('#00').parent().parent().offset().top;
-    var width = left + $('#00').parent().parent().width();
-    var height = top + $('#00').parent().parent().height();
-    
-    if (elem.offset().left > left && elem.offset().top > top 
-        && (elem.offset().left + elem.width()) < width
-         && (elem.offset().top + elem.height()) < height) {
-        return true;
+
+function SetCellsPosition(ship) {
+    for (var i = 1; i < ship.cellCount; ++i) {
+        var cord;
+        cord = ship.rotate == 0 ? (ship.cellsPosition[i - 1][0] + (parseInt(ship.cellsPosition[i - 1][1]) + 1)) :
+                            ((parseInt(ship.cellsPosition[i - 1][0]) + 1) + ship.cellsPosition[i - 1][1])
+        ship.cellsPosition[i] = cord;
     }
-    return false;
 }
 var rotate = function (ship) {
     console.log(typeof (ship));
