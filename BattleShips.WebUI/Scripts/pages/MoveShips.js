@@ -1,5 +1,12 @@
 ﻿var shipsArray = []; // array for storage ships wich was select
-var onShipClick = function () {   
+var onShipClick = function () {
+    if (shipsArray.length != 0) {
+        if (shipsArray[shipsArray.length - 1].setted == false) {
+            alert('Press enter, to set your ship, before choose another!');
+            console.log(shipsArray[shipsArray.length - 1].setted, this);
+            return;
+        }
+    }
     console.log(this);
     var ship = $(this);
     ship.rotate = 0;//ship[0].style.transform;
@@ -8,6 +15,7 @@ var onShipClick = function () {
     ship._height = ship.height();
     ship.cellCount = ship.children().length;
     ship.cellsPosition = ['00']; // start position, cords of first cell of field
+    ship.setted = false;
     SetCellsPosition(ship);
     var hasInArray = false;
     for (var i = 0; i < shipsArray.length; ++i) {
@@ -94,10 +102,14 @@ var onShipClick = function () {
                 rotate(ship);               
                 break;
             case enter:
-                //console.log(shipsArray.length);
-                for (var i = 0; i < ship.cellsPosition.length; ++i) {
-                    console.log(ship.cellsPosition[i]);
+                if (!shipsCollisionCheck(ship)) {
+                    ship.setted = true;
+                    alert('The ship was setted, you can choose another!');
                 }
+                //console.log(shipsArray.length);
+                //for (var i = 0; i < ship.cellsPosition.length; ++i) {
+                //    console.log(ship.cellsPosition[i]);
+                //}
                 break;
             default:
                 console.log(e.keyCode);
@@ -115,6 +127,40 @@ function SetCellsPosition(ship) {
         ship.cellsPosition[i] = cord;
     }
 }
+
+function shipsCollisionCheck(ship) {
+    for (var i = 0; i < shipsArray.length; ++i) {
+        if (ship.attr('id') === shipsArray[i].attr('id')) {
+            continue;
+        }
+        for (var j = 0; j < ship.cellCount; ++j) {
+            for (var k = 0; k < shipsArray[i].cellCount; ++k) {
+                var cellCord = [];
+                cellCord[0] = shipsArray[i].cellsPosition[k].toString(); //center shipCell ZERO
+                //console.log(cellCord[0]);
+                cellCord.push((parseInt(cellCord[0][0]) - 1) + cellCord[0][1]); // up cell from ZERO
+                cellCord.push((parseInt(cellCord[0][0]) + 1) + cellCord[0][1]); // down cell from ZERO
+                cellCord.push((parseInt(cellCord[0][0]) - 1) + (parseInt(cellCord[0][1]) - 1).toString()); //up-left cell from ZERO
+                cellCord.push((parseInt(cellCord[0][0]) - 1) + (parseInt(cellCord[0][1]) + 1).toString()); //up-rigth cell from ZERO
+                cellCord.push((parseInt(cellCord[0][0]) + 1) + (parseInt(cellCord[0][1]) - 1).toString()); //down-left cell from ZERO
+                cellCord.push((parseInt(cellCord[0][0]) + 1) + (parseInt(cellCord[0][1]) + 1).toString()); //down-right cell from ZERO
+                cellCord.push((cellCord[0][0]) + (parseInt(cellCord[0][1]) - 1)); // left cell from ZERO
+                cellCord.push((cellCord[0][0]) + (parseInt(cellCord[0][1]) + 1)); // rigth cell from ZERO
+                for (var m = 0; m < cellCord.length; ++m) {
+                    //console.log('point - ', cellCord[m]);
+                    if (cellCord[m] == ship.cellsPosition[j]) {
+                        alert("Thre is collision, please move ship to another direction!");
+                        console.log("Collision!");
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    console.log('no collision');
+    return false;
+}
+
 var rotate = function (ship) {
     console.log(typeof (ship));
     var srcCord = {
