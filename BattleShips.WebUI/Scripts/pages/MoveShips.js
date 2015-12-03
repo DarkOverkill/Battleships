@@ -1,5 +1,14 @@
 ﻿var shipsArray = []; // array for storage ships wich was select
-var onShipClick = function () {
+
+Array.dim = function (dimension, initial) {
+    var arr = [];
+    for (var i = 0; i < dimension; ++i) {
+        arr[i] = initial;
+    }
+    return arr;
+}
+
+var onShipClick = function () {  
     if (shipsArray.length != 0) {
         if (shipsArray[shipsArray.length - 1].setted == false) {
             alert('Press enter, to set your ship, before choose another!');
@@ -104,7 +113,12 @@ var onShipClick = function () {
             case enter:
                 if (!shipsCollisionCheck(ship)) {
                     ship.setted = true;
-                    alert('The ship was setted, you can choose another!');
+                    console.log('ship setted!');
+                    //alert('The ship was setted, you can choose another!');
+                    if (shipsArray.length == 10) {                        
+                        sendShipsPosition();
+                        $('#sendShipsCord').removeAttr('disabled');
+                    }
                 }
                 //console.log(shipsArray.length);
                 //for (var i = 0; i < ship.cellsPosition.length; ++i) {
@@ -118,7 +132,17 @@ var onShipClick = function () {
         SetCellsPosition(ship);
     }
 }
-
+var sendShipsPosition = function () {
+    var rowsNumber = Number($('#00').parent().parent().children().length);
+    var colsNumber = Number($('#00').parent().parent().children().length);
+    var cellsInfoArray = Array.dim(rowsNumber*colsNumber, 0);
+    for (var i = 0; i < shipsArray.length; ++i) {
+        for (var j = 0; j < shipsArray[i].cellCount; ++j) {
+            cellsInfoArray[parseInt(shipsArray[i].cellsPosition[j])] = 1;
+        }
+    }
+    console.log(cellsInfoArray.toString());
+}
 function SetCellsPosition(ship) {
     for (var i = 1; i < ship.cellCount; ++i) {
         var cord;

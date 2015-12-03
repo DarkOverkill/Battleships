@@ -105,28 +105,31 @@
         </table>
     </div>
     <div class="clear"></div>
-    @{
-        int shipSize = 4, shipId = 0, shipCount = 1, maxShips = 10;
+    <div class="left"><input type="button" style="margin-right:10px" value="Start" id="sendShipsCord" disabled/></div>
+    <div class="right">
+        @{
+            int shipSize = 4, shipId = 0, shipCount = 1, maxShips = 10;
 
-        while(maxShips != 0)
-        {
-            for (int i = 0; i < shipCount; i++)
+            while (maxShips != 0)
             {
-                --maxShips;
-                <div class="ship" id="@shipId">
-                     @for (int j = 0; j < shipSize; j++)
-                     {
-                         <div class="shipCell"></div>
-                     }                   
-                </div>
-                <div class="space"></div>
-                ++shipId;
-            }
-            ++shipCount;
-            --shipSize;
-            <div class="clear"></div>
+                for (int i = 0; i < shipCount; i++)
+                {
+                    --maxShips;
+                    <div class="ship" id="@shipId">
+                        @for (int j = 0; j < shipSize; j++)
+                        {
+                            <div class="shipCell"></div>
+                        }
+                    </div>
+                    <div class="space"></div>
+                    ++shipId;
+                }
+                ++shipCount;
+                --shipSize;
+                <div class="clear"></div>
             }
         }
+    </div>
     <!--
     <div class="clear"></div>
     <div class="ship" id="4">
