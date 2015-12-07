@@ -96,6 +96,7 @@
     <Content Include="Scripts\libs\jquery\jquery-2.1.4.js" />
     <Content Include="Scripts\libs\jquery\jquery-2.1.4.min.js" />
     <Content Include="Scripts\libs\jquery\JqueryRotate.js" />
+    <Content Include="Scripts\pages\Fire.js" />
     <Content Include="Scripts\pages\hideBlock.js" />
     <Content Include="Scripts\pages\MoveShips.js" />
     <Content Include="Web.config" />
@@ -127,6 +128,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BattleShips.Entities\BattleShips.Entities.csproj">
+      <Project>{952457e6-833f-420a-be57-577ad477cd92}</Project>
+      <Name>BattleShips.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BattleShipsRepository\BattleShips.Repositories.csproj">
+      <Project>{11a48e9d-cc51-4123-a177-d0d3290cd0c2}</Project>
+      <Name>BattleShips.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     int fieldSize = ViewBag.FieldSize;
     Layout = null;
 }
@@ -11,6 +10,7 @@
     <meta name="viewport" content="width=device-width" />
     <script src="~/Scripts/libs/jquery/jquery-2.1.4.js"></script>
     <script src="~/Scripts/pages/MoveShips.js"></script>
+    <script src="~/Scripts/pages/Fire.js"></script>
     <link href="@Url.Content("/css/BattleField.css")" rel="stylesheet" type="text/css" />
     <title>Index</title>
 </head>
@@ -32,8 +32,13 @@
                                         <tr class="battle_field">
                                             @for (int L = 0; L < fieldSize; ++L)
                                             {
-                                                <th class="battle_field">
-                                                    <button class="cell" />
+                                                <th class="battle_field" data-id="@Convert.ToInt32(@k + @L.ToString())">
+                                                    <!--
+                                                    <form method="post">
+                                                        <input type="submit" value="" class="cell" />
+                                                    </form>
+                                                    -->
+                                                    <button class="cell" data-id="@Convert.ToInt32(@k + @L.ToString())" />
                                                 </th>
                                             }
                                         </tr>
@@ -105,7 +110,7 @@
         </table>
     </div>
     <div class="clear"></div>
-    <div class="left"><input type="button" style="margin-right:10px" value="Start" id="sendShipsCord" disabled/></div>
+    <div class="left"><input type="button" style="margin-right:10px" value="Start" id="sendShipsCord" /></div>
     <div class="right">
         @{
             int shipSize = 4, shipId = 0, shipCount = 1, maxShips = 10;
