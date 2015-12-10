@@ -21,10 +21,10 @@
     })
 };
 
-var init = function () {
+var initFire = function () {
     $('button.cell').on('click', onButtonCellClick);
 };
 
 $(function () {
-    init();
+    initFire();
 });

@@ -89,7 +89,24 @@ div.right{
 }
 div.left{
     float: left;
-    width: 70%;
+    width: 50%;
     height: 50px;
     text-align: right;
+}
+div.userList{
+    height: 150px;
+    width: 180px;
+    border: 1px solid grey;
+    background-color: whitesmoke;
+    float: left;
+    overflow-y: scroll;
+}
+div.loginUser {
+    color: green;
+    font-weight: bold;
+    font-size: 18px;
+}
+div.user {
+    color: black;
+    font-size: 18px;
 }

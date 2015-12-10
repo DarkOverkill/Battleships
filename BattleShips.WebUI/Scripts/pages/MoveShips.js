@@ -148,6 +148,8 @@
         }
         console.log(data.positions);
 
+        $('#shipsPosition').val(data.positions);
+
         $.ajax({
             type: "POST",
             url: "/BattleField/GetShipsPosition",

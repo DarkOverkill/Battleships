@@ -125,6 +125,7 @@
     <Content Include="Scripts\libs\jquery\jquery-2.1.4.min.js" />
     <Content Include="Scripts\libs\SignalR\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\libs\SignalR\jquery.signalR-2.2.0.min.js" />
+    <Content Include="Scripts\pages\Connect.js" />
     <Content Include="Scripts\pages\Fire.js" />
     <Content Include="Scripts\pages\hideBlock.js" />
     <Content Include="Scripts\pages\MoveShips.js" />

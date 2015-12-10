@@ -11,6 +11,9 @@
     <script src="~/Scripts/libs/jquery/jquery-2.1.4.js"></script>
     <script src="~/Scripts/pages/MoveShips.js"></script>
     <script src="~/Scripts/pages/Fire.js"></script>
+    <script src="~/Scripts/pages/Connect.js"></script>
+    <script src="~/Scripts/libs/SignalR/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
     <link href="@Url.Content("/css/BattleField.css")" rel="stylesheet" type="text/css" />
     <title>Index</title>
 </head>
@@ -110,7 +113,8 @@
         </table>
     </div>
     <div class="clear"></div>
-    <div class="left"><input type="button" style="margin-right:10px" value="Start" id="sendShipsCord" /></div>
+    <div class="userList"></div>
+    <div class="left"><input type="button" style="margin-right:10px" value="Start" id="sendShipsCord" disabled/></div>
     <div class="right">
         @{
             int shipSize = 4, shipId = 0, shipCount = 1, maxShips = 10;
@@ -135,6 +139,8 @@
             }
         }
     </div>
+    <input id="hdId" type="hidden" />
+    <input id="shipsPosition" type="hidden" />
     <!--
     <div class="clear"></div>
     <div class="ship" id="4">
