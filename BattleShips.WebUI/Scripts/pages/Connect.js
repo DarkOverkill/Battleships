@@ -23,7 +23,8 @@ var registerEvents = function (hubConnection) {
         var cell = $(this);
         var cellId = cell.data('id');
         console.log(cellId, typeof (cellId));
-        cell.remove();      
+        cell.remove();
+        $('button.cell').attr('disabled', true);
         hubConnection.server.makeFire(cellId);
     })   
 };
@@ -33,17 +34,22 @@ var registerClientsMethod = function (clientHub) {
     clientHub.client.makeFire = function (cellValue, cellId) {
         console.log('makeFire ', cellId, cellValue);
         if (cellValue == '1') {
-            console.log('do');
+            $('#yourField th[data-id = ' + cellId + ']').children().remove();
             $('#yourField th[data-id = ' + cellId + ']').append("<div class='hit'></div>");
         }
         else {
             $('#yourField th[data-id = ' + cellId + ']').append("<div class='miss'></div>");
+            $('button.cell').attr('disabled', false);
         }
     }
     clientHub.client.resultOfFire = function (cellValue, cellId) {
         console.log('reusltOfFire ', cellValue, cellId);
         if (cellValue == '1') {
             $('#enemyField th[data-id = ' + cellId + ']').append("<div class='hit'>X</div>");
+            $('button.cell').attr('disabled', false);
+        }
+        else {
+            $('button.cell').attr('disabled', true);
         }
     }
 
@@ -64,6 +70,11 @@ var registerClientsMethod = function (clientHub) {
 
     clientHub.client.requestOnGame = function (fromUserId, fromUserName) {
         var answer = confirm(fromUserName + ' want to play.');
+        console.log(answer, typeof (answer));
+        if (answer == true)
+        {
+            $('button.cell').attr('disabled', false);
+        }
         clientHub.server.answerOnRequest(fromUserId, answer);
     }
     clientHub.client.answerOnRequest = function (toUserId, fromUserName, message) {

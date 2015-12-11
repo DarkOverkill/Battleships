@@ -234,6 +234,7 @@
     var init = function () {
         $('.ship').on('click', onShipClick);
         $('#sendShipsCord').on('click', sendShipsPosition);
+        $('button.cell').attr('disabled', true);
     };
     
     $(function () {
