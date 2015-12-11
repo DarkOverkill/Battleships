@@ -17,11 +17,35 @@ var registerEvents = function (hubConnection) {
         console.log('func from HUB: ' + positions);
         $('#sendShipsCord').remove();
         hubConnection.server.getShipsPosition(positions);
-    }); 
-   
+    });
+
+    $('button.cell').on('click', function () {
+        var cell = $(this);
+        var cellId = cell.data('id');
+        console.log(cellId, typeof (cellId));
+        cell.remove();      
+        hubConnection.server.makeFire(cellId);
+    })   
 };
 
 var registerClientsMethod = function (clientHub) {
+
+    clientHub.client.makeFire = function (cellValue, cellId) {
+        console.log('makeFire ', cellId, cellValue);
+        if (cellValue == '1') {
+            console.log('do');
+            $('#yourField th[data-id = ' + cellId + ']').append("<div class='hit'></div>");
+        }
+        else {
+            $('#yourField th[data-id = ' + cellId + ']').append("<div class='miss'></div>");
+        }
+    }
+    clientHub.client.resultOfFire = function (cellValue, cellId) {
+        console.log('reusltOfFire ', cellValue, cellId);
+        if (cellValue == '1') {
+            $('#enemyField th[data-id = ' + cellId + ']').append("<div class='hit'>X</div>");
+        }
+    }
 
     clientHub.client.onConnected = function (id, userName, allUsers) {
         $('#hdId').val(id);

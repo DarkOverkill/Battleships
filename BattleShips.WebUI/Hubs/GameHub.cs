@@ -79,5 +79,18 @@ namespace BattleShips.WebUI.Hubs
             }
         }
 
+        public void MakeFire(int cellId)
+        {
+            string fromUserId = Context.ConnectionId;
+
+            var fromUser = connectedUsers.FirstOrDefault(x => x.Id == fromUserId);
+            var toUser = connectedUsers.FirstOrDefault(x => x.Id == fromUser.OponentId);
+            if (toUser != null && fromUser != null)
+            {
+                var cellValue = toUser.ShipsPosition[cellId];
+                Clients.Client(toUser.Id).makeFire(cellValue, cellId);
+                Clients.Caller.resultOfFire(cellValue, cellId);
+            }
+        }
     }
 }

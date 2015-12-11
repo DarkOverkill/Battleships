@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width" />
     <script src="~/Scripts/libs/jquery/jquery-2.1.4.js"></script>
     <script src="~/Scripts/pages/MoveShips.js"></script>
-    <script src="~/Scripts/pages/Fire.js"></script>
+    <!--<script src="~/Scripts/pages/Fire.js"></script>-->
     <script src="~/Scripts/pages/Connect.js"></script>
     <script src="~/Scripts/libs/SignalR/jquery.signalR-2.2.0.min.js"></script>
     <script src="~/signalr/hubs"></script>
@@ -29,7 +29,7 @@
                         if (j == 1 && i == 1)
                         {
                             <th class="" colspan="10" rowspan="10">
-                                <table class="battle_field">
+                                <table class="battle_field" id="enemyField">
                                     @for (int k = 0; k < fieldSize; ++k)
                                     {
                                         <tr class="battle_field">
@@ -80,13 +80,13 @@
                         if (j == 1 && i == 1)
                         {
                             <th class="" colspan="10" rowspan="10">
-                                <table class="battle_field">
+                                <table class="battle_field" id="yourField">
                                     @for (int k = 0; k < fieldSize; ++k)
                                     {
                                         <tr class="battle_field">
                                             @for (int L = 0; L < fieldSize; ++L)
                                             {
-                                                <th class="battle_field" id="@(k.ToString() + L)">
+                                                <th class="battle_field" id="@(k.ToString() + L)" data-id="@Convert.ToInt32(@k + @L.ToString())">
                                                 </th>
                                             }
                                         </tr>

@@ -113,6 +113,8 @@
                 case enter:
                     if (!shipsCollisionCheck(ship)) {
                         ship.setted = true;
+                        $(ship).remove();
+                        redrawShip(shipsArray[shipsArray.length - 1]);
                         console.log('ship setted!');
                         //alert('The ship was setted, you can choose another!');
                         if (shipsArray.length == 10) {
@@ -130,6 +132,12 @@
                     break;
             }
             setCellsPosition(ship);
+        }
+    };
+
+    var redrawShip = function (ship) {
+        for (var i = 0; i < ship.cellCount; ++i) {
+            $('#yourField  tr #' + ship.cellsPosition[i]).append("<div class='shipCell'></div>");
         }
     };
 
@@ -227,7 +235,7 @@
         $('.ship').on('click', onShipClick);
         $('#sendShipsCord').on('click', sendShipsPosition);
     };
-
+    
     $(function () {
         init();
     });
