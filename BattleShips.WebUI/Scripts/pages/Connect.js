@@ -1,4 +1,5 @@
-﻿var pageLoad = function () {
+﻿var firstTurn = false;
+var pageLoad = function () {
     var hubConnection = $.connection.gameHub;
 
     $.connection.hub.start().done(function () {
@@ -16,6 +17,12 @@ var registerEvents = function (hubConnection) {
         var positions = $('#shipsPosition').val();
         console.log('func from HUB: ' + positions);
         $('#sendShipsCord').remove();
+        if (firstTurn == true) {
+            $('button.cell').attr('disabled', false);
+            $('#turn').html('Your');
+        } else {
+            $('#turn').html('Enemy');
+        }
         hubConnection.server.getShipsPosition(positions);
     });
 
@@ -40,6 +47,7 @@ var registerClientsMethod = function (clientHub) {
         else {
             $('#yourField th[data-id = ' + cellId + ']').append("<div class='miss'></div>");
             $('button.cell').attr('disabled', false);
+            $('#turn').html('Your');
         }
     }
     clientHub.client.resultOfFire = function (cellValue, cellId) {
@@ -47,9 +55,11 @@ var registerClientsMethod = function (clientHub) {
         if (cellValue == '1') {
             $('#enemyField th[data-id = ' + cellId + ']').append("<div class='hit'>X</div>");
             $('button.cell').attr('disabled', false);
+            $('#turn').html('Your');
         }
         else {
             $('button.cell').attr('disabled', true);
+            $('#turn').html('Enemy');
         }
     }
 
@@ -73,7 +83,8 @@ var registerClientsMethod = function (clientHub) {
         console.log(answer, typeof (answer));
         if (answer == true)
         {
-            $('button.cell').attr('disabled', false);
+            firstTurn = true;
+            //$('button.cell').attr('disabled', false);
         }
         clientHub.server.answerOnRequest(fromUserId, answer);
     }

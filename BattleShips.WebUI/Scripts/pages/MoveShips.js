@@ -77,7 +77,7 @@
                     }
                     break;
                 case right:
-                    if (ship.offset().left + ship._width < fieldData.right) {
+                    if (ship.offset().left + ship._width + 1 < fieldData.right) {
                         ship.offset({
                             left: (ship.offset().left + 31)
                         });
